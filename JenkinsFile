@@ -7,11 +7,5 @@ pipeline {
                 sh 'ls -latrh'
             }
         }
-        stage('Docker build') {
-            steps {
-                sh "cd /var/lib/jenkins/workspace/airbus-jenkins-pipeline_main"
-                sh 'ls -latr'
-            }
-        }
     }
 }
