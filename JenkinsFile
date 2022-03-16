@@ -3,8 +3,8 @@ pipeline {
   stages {
         stage('Checkout') {
             steps {
-                sh 'git clone https://github.com/sachinshaji/airbus-project.git'
-                sh 'cd airbus-project'
+               // sh 'git clone https://github.com/sachinshaji/airbus-project.git'
+                sh 'ls -latr'
             }
         }
         stage('Docker build') {
