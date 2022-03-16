@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Checkout') {
             steps {
-                git 'https://github.com/jenkinsci/git-plugin'
+                git 'https://github.com/sachinshaji/airbus-project.git'
                 sh 'ls -latrh'
             }
         }
