@@ -1,15 +1,16 @@
 pipeline {
  agent any
   stages {
-        stage('Example Build') {
-            steps {
-                echo "Hello, Maven"
-            }
-        }
         stage('Checkout') {
             steps {
                 git 'https://github.com/sachinshaji/airbus-project.git'
                 sh 'ls -latrh'
+            }
+        }
+        stage('Docker build') {
+            steps {
+                sh "cd /var/lib/jenkins/workspace/airbus-jenkins-pipeline"
+                sh 'ls -latr'
             }
         }
     }
