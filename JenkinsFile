@@ -3,7 +3,7 @@ pipeline {
   stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/sachinshaji/airbus-project.git'
+                sh git clone 'https://github.com/sachinshaji/airbus-project.git'
                 sh 'ls -latrh'
             }
         }
