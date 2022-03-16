@@ -4,7 +4,13 @@ pipeline {
         stage('Checkout') {
             steps {
                 sh 'git clone https://github.com/sachinshaji/airbus-project.git'
-                sh 'ls -latrh'
+                sh 'cd airbus-project'
+            }
+        }
+        stage('Docker build') {
+            steps {
+                sh 'docker build --tag python-docker .'
+                sh 'cd airbus-project'
             }
         }
     }
