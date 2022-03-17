@@ -12,7 +12,9 @@ pipeline {
         stage('Docker run and test the output') {
             steps {
                 sh 'docker run -d -p 5000:5000 --name airbus-container python-docker'
+                sh 'sleep 12'
                 sh 'curl -i $(hostname -i):5000'
+                sh 'docker stop airbus-container && docker rm airbus-container'
             }
         }
     }
