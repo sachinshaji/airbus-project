@@ -6,15 +6,19 @@ pipeline {
         stage('Docker build') {
             steps {
                 // building docker image from the Dockerfile what we have in the repository
-                sh 'docker build --tag python-docker .'
+               // sh 'docker build --tag python-docker .'
+               sh 'echo 1'
             }
         }
         stage('Docker run and test the output') {
             steps {
-                sh 'docker run -d -p 5000:5000 --name airbus-container python-docker'
-                sh 'sleep 12'
-                sh 'curl -i $(hostname -i):5000'
-                sh 'docker stop airbus-container && docker rm airbus-container'
+                //sh 'docker run -d -p 5000:5000 --name airbus-container python-docker'
+                sh 'sleep 1'
+               // sh 'curl -i $(hostname -i):5000'
+               // sh 'docker stop airbus-container && docker rm airbus-container'
+                emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
             }
         }
     }
