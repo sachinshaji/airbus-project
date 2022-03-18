@@ -6,16 +6,15 @@ pipeline {
         stage('Docker build') {
             steps {
                 // building docker image from the Dockerfile what we have in the repository
-               //sh 'docker build --tag python-docker .'
-               sh 'echo 1'
+               sh 'docker build --tag python-docker .'
             }
         }
         stage('Docker run and test the output') {
             steps {
-                //sh 'docker run -d -p 5000:5000 --name airbus-container python-docker'
-                sh 'sleep 1'
-                //sh 'curl -i $(hostname -i):5000'
-                //sh 'docker stop airbus-container && docker rm airbus-container'
+                sh 'docker run -d -p 5000:5000 --name airbus-container python-docker'
+                sh 'sleep 8'
+                sh 'curl -i $(hostname -i):5000'
+                sh 'docker stop airbus-container && docker rm airbus-container'
                 //emailing the result
             }
         }
