@@ -17,10 +17,14 @@ pipeline {
                 //sh 'curl -i $(hostname -i):5000'
                 //sh 'docker stop airbus-container && docker rm airbus-container'
                 //emailing the result
+            }
+        }
+  post {
+     always {
                 emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                 recipientProviders: [[$class: 'RequesterRecipientProvider']],
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-            }
-        }
+                }
+            )
     }
 }
